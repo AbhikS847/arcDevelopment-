@@ -4,13 +4,16 @@ import Header from './ui/Header';
 import theme from './ui/Theme';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Footer from './ui/Footer';
+import {useState} from 'react';
 
 function App() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [value,setValue] = useState(0);
   return (
     <div className="App">
     <ThemeProvider theme={theme}>
     <BrowserRouter>
-    <Header />
+    <Header value={value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
     <Switch>
       <Route exact path="/" component = {()=>{return <div style={{height:'2000px'}}>Home</div>}}></Route>
       <Route exact path="/services" component = {()=>{return <div>Services</div>}}></Route>
@@ -22,7 +25,7 @@ function App() {
       <Route exact path="/about" component = {()=>{return <div>About us</div>}}></Route>
       <Route exact path="/estimate" component = {()=>{return <div>Estimate</div>}}></Route>
     </Switch>
-    <Footer />
+    <Footer value={value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
     </BrowserRouter>
     </ThemeProvider>
     </div>
